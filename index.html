@@ -60,7 +60,7 @@
             font-weight: bold;
         }
         .guessSubmit {
-            width: 125px;
+            width: 125gipx;
             height: 50px;
             background-image: linear-gradient(90deg, #9f7ab7 0%, #8b4bb6 49%, #7535a0 80%, #9f7ab7 100%);
             border-radius:5px;
@@ -179,36 +179,36 @@
             let guessCount = 1;   //variable to keep track of how many guesses the player has had 
             let resetButton;      //This variable contains a reference for a future button to reset the game
 
+
+            
             function checkGuess() {
-                const userGuess = Number(guessField.value);
-                if (guessCount === 1) {
-                  guesses.textContent = 'Previous guesses: ';
-                  lives.content = '10';
+                const userGuess = Number(guessField.value);  //We create a value to store the number the user inputs in the guessField
+                if (guessCount === 1) {   //First turn in the game
+                  guesses.textContent = 'Previous guesses: ';  //We fill the empty p element with "Pvious guesses"
                 }
-                guesses.textContent += `${userGuess} `;
+                guesses.textContent += `${userGuess},  `;  
               
-                if (userGuess === randomNumber) {
+                if (userGuess === randomNumber) {  //If the user wins the game, then prompt a green message that he has won
                   lastResult.textContent = 'Congratulations! You got it right!';
                   lastResult.style.backgroundColor = 'green';
                   lowOrHi.textContent = '';
-                  setGameOver();
-                } else if (guessCount === 10) {
+                  setGameOver();   //We call this function to stop the game and reset everything
+                } else if (guessCount === 10) {  //Otherwise, if the user loses the game, then prompt a red message that he has lost
                   lastResult.textContent = '!!!GAME OVER!!!';
                   lowOrHi.textContent = '';
                   setGameOver();
-                } else {
+                } else {  //Otherwise, if the user is in a normal turn, just prompt that in a red message that he is wrong
                   lastResult.textContent = 'Wrong!';
                   lastResult.style.backgroundColor = 'red';
-                  if (userGuess < randomNumber) {
+                  if (userGuess < randomNumber) {  //If the guess of the user in a normal turn was less that the answer, prompt "too low"
                     lowOrHi.textContent = 'Last guess was too low!';
-                  } else if (userGuess > randomNumber) {
+                  } else if (userGuess > randomNumber) { //Otherwise, if the guess of the user was higher than the answer, prompt "too high"
                     lowOrHi.textContent = 'Last guess was too high!';
                   }
                 }
-
                             
-                guessCount++;
-                guessField.value = '';
+                guessCount++; //If the counter reaches 10, then the user loses the game
+                guessField.value = ''; //To empty the guessField after the submit button is pressed
                 guessField.focus();
 
                 lives.textContent = 11 - guessCount;
@@ -222,6 +222,7 @@
                   guessSubmit.disabled = true;
                   resetButton = document.createElement('button');  //Creates a new button element 
                   resetButton.textContent = 'Start new game';  //Sets its text label (content)
+                  resetButton.style.backgroundcolor = 'red';
                   document.body.appendChild(resetButton);    //Add the new button to the bottom of the HTML document
                   resetButton.addEventListener('click', resetGame); //This line sets an event listener on the new button so that when it is clicked, the function resetGame() is called
             }
