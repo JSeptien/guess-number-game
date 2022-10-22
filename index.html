@@ -60,10 +60,11 @@
             font-weight: bold;
         }
         .guessSubmit {
-            width: 100px;
+            width: 125px;
             height: 50px;
-            background-image: linear-gradient(90deg, #bd82e4 0%, #773c9e 49%, #492164 80%, #562a73 100%);
+            background-image: linear-gradient(90deg, #9f7ab7 0%, #8b4bb6 49%, #7535a0 80%, #9f7ab7 100%);
             border-radius:5px;
+            padding: 18px;
             display:flex;
             align-items:center;
             justify-content:center;
@@ -81,7 +82,7 @@
             justify-content:center;
         }          
         .guessSubmit:hover {
-          animation:slidebg 4s linear infinite;
+          animation: slidebg 6s linear infinite;
         }
 
         @keyframes slidebg {
@@ -126,6 +127,11 @@
             margin: 20px;
         }
 
+        .resultParas div {
+            display: flex;
+            gap: 15px;
+        }
+
 
     </style>
 </head>
@@ -146,8 +152,10 @@
         </div>
 
         <div class="resultParas"> <!--They are in the same div because we need to reset them later on-->
-            <p class="guesses"></p>
-            <p class="lastResult"></p>
+            <div>
+                <p class="lastResult"></p>
+                <p class="guesses"></p>
+            </div>                        
             <div class="hint">Hint: <p class="lowOrHi"></p></div>
         </div>
 
@@ -214,7 +222,7 @@
                   guessSubmit.disabled = true;
                   resetButton = document.createElement('button');  //Creates a new button element 
                   resetButton.textContent = 'Start new game';  //Sets its text label (content)
-                  document.body.append(resetButton);    //Add the new button to the bottom of the HTML document
+                  document.body.appendChild(resetButton);    //Add the new button to the bottom of the HTML document
                   resetButton.addEventListener('click', resetGame); //This line sets an event listener on the new button so that when it is clicked, the function resetGame() is called
             }
 
